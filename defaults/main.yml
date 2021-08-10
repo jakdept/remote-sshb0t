@@ -3,6 +3,7 @@ remote_sshb0t:
   domains:
     - url: example.com
       github_api_url: "api.example.com"
+      gitlab-api-token: ""
       allowed_users:
         - bob
         - alice
