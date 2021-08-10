@@ -10,7 +10,7 @@
 # https://docs.github.com/en/rest/reference/teams#list-team-members
 - name: process each domain
   include_tasks: domain.yml
-  loop: "{{ remote_sshb0t }}"
+  loop: "{{ remote_sshb0t.domains }}"
   loop_control:
     loop_var: domain
   when: domain.url not in ["example.com", "example.org"]
