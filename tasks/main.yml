@@ -1,0 +1,18 @@
+---
+# https://docs.github.com/en/rest/reference/teams#list-team-members
+- name: process each domain
+  include_tasks: domain.yml
+  loop: "{{ remote_sshb0t }}"
+  loop_control:
+    loop_var: domain
+  when: domain.url not in ["example.com", "example.org"]
+
+# - name: flatten github orgs to users
+
+# - name: flatten gitlab orgs to users
+
+# - name: deduplicate users
+
+# - name: retrieve ssh keys
+
+# - name: write out keys

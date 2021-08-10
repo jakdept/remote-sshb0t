@@ -1,0 +1,7 @@
+---
+remote_sshb0t:
+  - url: example.com
+    allowed_users: []
+    allowed_github_orgs: []
+    allowed_github_teams: []
+    allowed_gitlab_groups: []

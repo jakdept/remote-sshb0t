@@ -1,0 +1,14 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: gather keys
+      include_role:
+        name: remote_sshb0t
+      vars:
+        remote_sshb0t:
+          - url: github.com
+            allowed_users:
+              - jakdept
+            allowed_github_orgs:
+              - liquidweb

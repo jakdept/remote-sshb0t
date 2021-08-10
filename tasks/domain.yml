@@ -1,0 +1,22 @@
+---
+- name: move allowed users
+  set_fact:
+    sshb0t_current_allowed_users: "{{ domain.allowed_users }}"
+
+- name: process each github org
+  include_tasks: github-org.yml
+  loop: "{{ domain.allowed_github_orgs if domain.allowed_github_orgs is iterable else [] }}"
+  loop_control:
+    loop_var: org_name
+
+# https://docs.github.com/en/rest/reference/teams#list-team-members
+# - name: flatten github teams to users
+
+# - name: flatten gitlab orgs to users
+
+# - name: deduplicate users
+
+- name: show users
+  debug:
+    var: sshb0t_current_allowed_users
+  delegate_to: localhost
