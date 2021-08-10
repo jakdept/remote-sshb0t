@@ -12,4 +12,4 @@
     user: root
     comment: "{{ username }}@{{ domain.url }}"
     key_options: "environment=\"SSH_USER={{ username }}\""
-    key: "{{ user-keys }}"
+    key: "{{ user-keys.content }}"
