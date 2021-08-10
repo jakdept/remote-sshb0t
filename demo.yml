@@ -7,12 +7,15 @@
         name: remote_sshb0t
       vars:
         remote_sshb0t:
-          - url: github.com
-            github_api_url: api.github.com
-            allowed_users:
-              - jakdept
-            allowed_github_orgs:
-              - liquidweb
-          - url: gitlab.com
-            allowed_users:
-              - jakdept
+          domains:
+            - url: github.com
+              github_api_url: api.github.com
+              allowed_users:
+                - jakdept
+              allowed_github_orgs:
+                - liquidweb
+            - url: gitlab.com
+              allowed_users:
+                - jakdept
+          default_authorized_keys: "{{ lookup(file, '/root/.ssh/id_rsa.pub') }}"
+          overwrite: False

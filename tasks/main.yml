@@ -13,13 +13,3 @@
   loop_control:
     loop_var: domain
   when: domain.url not in ["example.com", "example.org"]
-
-# - name: flatten github orgs to users
-
-# - name: flatten gitlab orgs to users
-
-# - name: deduplicate users
-
-# - name: retrieve ssh keys
-
-# - name: write out keys
