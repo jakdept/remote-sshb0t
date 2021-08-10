@@ -8,6 +8,7 @@
       vars:
         remote_sshb0t:
           - url: github.com
+            github_api_url: api.github.com
             allowed_users:
               - jakdept
             allowed_github_orgs:

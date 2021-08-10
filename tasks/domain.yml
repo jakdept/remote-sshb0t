@@ -5,7 +5,9 @@
 
 - name: process each github org
   include_tasks: github-org.yml
-  loop: "{{ domain.allowed_github_orgs if domain.allowed_github_orgs is iterable else [] }}"
+  loop: "{{ domain.allowed_github_orgs
+    if domain.allowed_github_orgs is iterable
+    else [] }}"
   loop_control:
     loop_var: org_name
 
