@@ -1,8 +1,8 @@
 ---
 # https://docs.github.com/en/rest/reference/orgs#list-organization-members
-- name: retrieve users in gitlab org
+- name: retrieve users in github org
   uri:
-    url: "https://{{ github_api_url | default('api.github.com') }}/orgs/{{ org_name }}/members"
+    url: "https://{{ github_api_url | default('api.github.com') }}/orgs/{{ github_org_name }}/members"
     status_code: 200
     headers:
       Accept: "application/vnd.github.v3+json"
@@ -16,15 +16,3 @@
       sshb0t_current_allowed_users +
       (github_response.json | community.general.json_query('[*].login') )
       ] }}"
-
-# - name: show names
-#   debug:
-#     msg: "{{ item.login }}"
-#   loop: "{{ github_response.json }}"
-#   delegate_to: localhost
-
-# - name: append name
-#   debug:
-#     var: item
-#   loop: "{{ github_response.json | community.general.json_query('[*].login') }}"
-#   # delegate_to: localhost

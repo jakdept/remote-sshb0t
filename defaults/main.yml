@@ -1,8 +1,14 @@
 ---
 remote_sshb0t:
-  - url: example.com
-    github_api_url: ""
-    allowed_users: []
-    allowed_github_orgs: []
-    allowed_github_teams: []
-    allowed_gitlab_groups: []
+  domains:
+    - url: example.com
+      github_api_url: "api.example.com"
+      allowed_users:
+        - bob
+        - alice
+        - octocat
+      allowed_github_orgs:
+        - partyhouse
+      allowed_gitlab_groups: []
+  default_authorized_keys: []
+  overwrite: False

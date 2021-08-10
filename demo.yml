@@ -13,3 +13,6 @@
               - jakdept
             allowed_github_orgs:
               - liquidweb
+          - url: gitlab.com
+            allowed_users:
+              - jakdept

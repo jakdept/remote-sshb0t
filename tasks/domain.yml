@@ -5,16 +5,15 @@
 
 - name: process each github org
   include_tasks: github-org.yml
-  loop: "{{ domain.allowed_github_orgs
-    if domain.allowed_github_orgs is iterable
-    else [] }}"
+  loop: "{{ domain.allowed_github_org | default([]) }}"
   loop_control:
-    loop_var: org_name
+    loop_var: github_org_name
 
-# https://docs.github.com/en/rest/reference/teams#list-team-members
-# - name: flatten github teams to users
-
-# - name: flatten gitlab orgs to users
+- name: process each gitlab group
+  include_tasks: gitlab-group.yml
+  loop: "{{ domain.allowed_gitlab_groups | default([]) }}"
+  loop_control:
+    loop_var: gitlab_group_name
 
 # - name: deduplicate users
 
@@ -22,3 +21,9 @@
   debug:
     var: sshb0t_current_allowed_users
   delegate_to: localhost
+
+- name: push user keys to server
+  ansible.posix.authorized_key:
+    comment: "{{ username }}@{{ domain.url }}"
+    key_options: "environment=\"SSH_USER={{ username}}\""
+    key: "https://{{ domain.url }}/{{ username }}.keys"

@@ -1,4 +1,11 @@
 ---
+- name: set initial keys
+  ansible.posix.authorized_key:
+    comment: "remote_sshb0t"
+    key_options: "environment=\"SSH_USER=remote_sshb0t"
+    key: "{{ remote_sshb0t.default_authorized_keys }}"
+    exclusive: "{{ remote_sshb0t.overwrite }}"
+
 # https://docs.github.com/en/rest/reference/teams#list-team-members
 - name: process each domain
   include_tasks: domain.yml

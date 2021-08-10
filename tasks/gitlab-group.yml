@@ -1,0 +1,18 @@
+---
+# https://docs.gitlab.com/ee/api/members.html#list-all-members-of-a-group-or-project
+- name: retrieve users in gitlab group
+  uri:
+    url: "https://{{ domain.url | default('gitlab.com') }}/api/v4/groups/{{ gitlab_group_name }}/members"
+    status_code: 200
+    headers:
+      Accept: "application/json"
+  register: gitlab_response
+  connection: local
+  delegate_to: localhost
+
+- name: append users
+  set_fact:
+    sshb0t_current_allowed_users: "{{ [
+      sshb0t_current_allowed_users +
+      (gitlab_response.json | community.general.json_query('[*].username') )
+      ] }}"
