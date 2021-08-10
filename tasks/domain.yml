@@ -22,10 +22,8 @@
     var: sshb0t_current_allowed_users
   delegate_to: localhost
 
-- name: push user keys to server
-  ansible.posix.authorized_key:
-    user: root
-    comment: "{{ item }}@{{ domain.url }}"
-    key_options: "environment='SSH_USER={{ item }}'"
-    key: "https://{{ domain.url }}/{{ item }}.keys"
-  loop: "{{ domain.allowed_users }}"
+- name: assert each user keys on server
+  include_tasks: user-keys.yml
+  loop: "{{ domain.allowed_users | default([]) }}"
+  loop_control:
+    loop_var: username

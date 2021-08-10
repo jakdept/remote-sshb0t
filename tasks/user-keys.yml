@@ -1,0 +1,15 @@
+---
+- name: retrieve user keys
+  uri:
+    url: "https://{{ domain.url | default('github.com') }}/{{ username }}.keys"
+    status_code: 200
+  register: user-keys
+  connection: local
+  delegate_to: localhost
+
+- name: push user keys to server
+  ansible.posix.authorized_key:
+    user: root
+    comment: "{{ username }}@{{ domain.url }}"
+    key_options: "environment='SSH_USER={{ username }}'"
+    key: "{{ user-keys }}"
