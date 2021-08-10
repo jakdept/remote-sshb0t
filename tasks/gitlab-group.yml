@@ -6,9 +6,12 @@
     status_code: 200
     headers:
       Accept: "application/json"
+    user: domain.username
+    password: domain.password
   register: gitlab_response
   connection: local
   delegate_to: localhost
+  when: domain.username is not empty and domain.password is not empty
 
 - name: append users
   set_fact:
