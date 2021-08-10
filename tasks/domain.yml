@@ -24,6 +24,7 @@
 
 - name: push user keys to server
   ansible.posix.authorized_key:
+    user: root
     comment: "{{ username }}@{{ domain.url }}"
     key_options: "environment=\"SSH_USER={{ username}}\""
     key: "https://{{ domain.url }}/{{ username }}.keys"

@@ -1,6 +1,7 @@
 ---
 - name: set initial keys
   ansible.posix.authorized_key:
+    user: root
     comment: "remote_sshb0t"
     key_options: "environment=\"SSH_USER=remote_sshb0t"
     key: "{{ remote_sshb0t.default_authorized_keys }}"
