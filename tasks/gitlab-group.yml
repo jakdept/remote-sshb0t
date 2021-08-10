@@ -6,7 +6,7 @@
     status_code: 200
     headers:
       Accept: "application/json"
-      gitlab-ci-token: "{{ domain.gitlab_token }}"
+      PRIVATE-TOKEN: "{{ domain.gitlab_token }}"
   register: gitlab_response
   connection: local
   delegate_to: localhost
