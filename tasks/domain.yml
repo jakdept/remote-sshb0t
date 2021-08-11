@@ -24,6 +24,6 @@
 
 - name: assert each user keys on server
   include_tasks: user-keys.yml
-  loop: "{{ domain.allowed_users | default([]) }}"
+  loop: "{{ sshb0t_current_allowed_users | default([]) }}"
   loop_control:
     loop_var: username
