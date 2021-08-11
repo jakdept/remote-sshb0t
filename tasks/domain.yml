@@ -1,5 +1,5 @@
 ---
-- name: move allowed users
+- name: capture current userlist in shared list
   set_fact:
     sshb0t_current_allowed_users: "{{ domain.allowed_users }}"
 
@@ -16,11 +16,6 @@
     loop_var: gitlab_group_name
 
 # - name: deduplicate users
-
-- name: show users
-  debug:
-    var: sshb0t_current_allowed_users
-  delegate_to: localhost
 
 - name: assert each user keys on server
   include_tasks: user-keys.yml

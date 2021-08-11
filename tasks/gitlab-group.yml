@@ -14,8 +14,8 @@
 
 - name: append users
   set_fact:
-    sshb0t_current_allowed_users: "{{ [
+    sshb0t_current_allowed_users: "{{
       sshb0t_current_allowed_users +
       (gitlab_response.json | community.general.json_query('[*].username') )
-      ] }}"
+      }}"
   when: domain.gitlab_token | length > 0
